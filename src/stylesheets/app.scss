@@ -1,0 +1,158 @@
+$green: #31b55f;
+$blue: #0A6EA9;
+body {
+    font-family: "McClatchy Sans";
+    background-color: #ececec;
+    color: #444;
+}
+
+header {
+    text-align: center;
+    h1 {
+        font-size: 3.5rem;
+        display: inline-block;
+        padding: 5px 10px;
+        border-left: 35px solid #444;
+        border-right: 35px solid #444;
+        line-height: 1;
+    }
+    margin-top: 1em;
+    margin-bottom: 2em;
+}
+
+#image {
+    max-width: 100%;
+}
+
+.modal-body {
+    text-align: center;
+}
+
+.modal-body>img,
+.modal-body>canvas {
+    max-width: 100%;
+}
+
+.img-preview {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    display: block;
+    background-color: black;
+    margin: 0 auto;
+}
+
+label {
+    margin-bottom: 0;
+}
+
+.btn {
+    margin-bottom: 1rem;
+    border-radius: 0;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-upload {
+    color: #fff;
+    border-radius: 0;
+    background-color: $green;
+    &:hover {
+        cursor: pointer;
+        background-color: #258b47;
+    }
+}
+
+.btn-download,
+.btn-fit,
+.btn-primary {
+    background-color: $blue;
+    border-radius: 0;
+    color: #fff;
+    border: none;
+    &:hover {
+        cursor: pointer;
+        background-color: rgb(8, 79, 121);
+        border: none;
+    }
+}
+
+.btn-dark {
+    margin-right: 1em;
+}
+
+.footer {
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    font-size: 13px;
+    .version {
+        font-size: 11px;
+        margin-left: 10px;
+    }
+    a {
+        color: $blue;
+    }
+}
+
+.modal-content {
+    background-color: #ececec;
+    border-color: #ececec;
+    border-radius: 0;
+    .modal-footer,
+    .modal-header {
+        border: none;
+    }
+}
+
+.col-md-3 {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 1.5s, visibility 1s;
+}
+
+.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.img-container {
+    width: 100%;
+    max-height: 503.44px;
+    min-height: 200px;
+    text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+    .img-container {
+        min-height: 500px
+    }
+}
+
+.cropper-modal {
+    opacity: 0.5;
+    transition: opacity .5s;
+}
+
+.cropper-view-box {
+    outline-color: rgba(220, 34, 40, .75);
+    transition: background-color .25s .25s
+}
+
+.cropper-face {
+    background-color: unset;
+}
+
+.modal-title {
+    margin-left: 50%;
+    transform: translateX(-50%)
+}
+
+.col-md-3 p {
+    font-size: .8rem;
+    margin-bottom: .5rem;
+}
+
+.cropper-canvas>img, .cropper-view-box>img{
+    transition: .25s;
+}
