@@ -3,12 +3,11 @@
 {% block content %}
 <header>
   <h1>Pill<br>Boxer</h1>
-  <!-- <p>Fit your photos for that <em>totally awesome</em> CMS <i class="fa fa-meh-o" aria-hidden="true"></i></p>  -->
   <p>Because not everyone fits in.</p> 
 </header>
 
   <div class="container">
-    <div class="text-center">
+    <div class="upload-wrapper text-center">
       <h3>Step 1.</h3>
       <label class="btn btn-lg btn-upload" for="uploadImage" title="Upload image">
         <input type="file" class="sr-only" id="uploadImage" name="file" accept=".jpg, .jpeg, .png, .gif, .bmp, tiff">
@@ -16,7 +15,7 @@
       </label>
     </div> 
     <div class="row">
-      <div class="col-md-9">
+      <div class="col-md-9 hidden">
         <div class="img-container">
           <img src="images/demo.png" alt="" id="image">
         </div>
@@ -25,7 +24,7 @@
     <div class="col-md-3 hidden">
       <h3>Step 2.</h3>
       <p class="step-note">Note: The image's size is <em>not</em> being reduced</p>
-      <button type="button" class="btn btn-fit" data-method="fitImage">Fit image</button>
+      <button type="button" class="btn btn-fit">Fit image</button>
       <h3>Step 3.</h3>
       <p>Select background color</p>
       <div class="color-buttons">
@@ -38,13 +37,13 @@
     </div>
 
     <div class="footer">
-      <span>Not working as expected? Email <a href="mailto:aalbright@miamiherald.com">Aaron Albright</a></span>
+      <span>Not working as expected? Email <a href="mailto:aalbright@miamiherald.com?subject=Pill%20Boxer%20help">Aaron Albright</a></span>
       <span class="version">v0.2</span>
     </div>
 
   </div> <!-- /.container -->
 
-<div class="modal fade docs-cropped" id="getCroppedCanvasModal" role="dialog" aria-hidden="true" aria-labelledby="getCroppedCanvasTitle" tabindex="-1">
+<div class="modal fade" id="croppedModal" role="dialog" aria-hidden="true" aria-labelledby="getCroppedCanvasTitle" tabindex="-1">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
@@ -56,7 +55,7 @@
       <div class="modal-body"></div>
       <div class="modal-footer">
         <button type="button" class="btn btn-dark" data-dismiss="modal">Back</button>
-        <a class="btn btn-primary" id="download" href="javascript:void(0);" download="cropped.jpg" disabled><i class="fa fa-download" aria-hidden="true"></i> Download</a>
+        <a class="btn btn-primary" id="download" href="javascript:void(0);" download="cropped" disabled><i class="fa fa-download" aria-hidden="true"></i> Download</a>
       </div>
     </div>
   </div>

@@ -10,6 +10,7 @@ const cropStart = () => {
     let options = {
         aspectRatio: 1.78,
         autoCropArea: 1,
+        center: false,
         guides: false,
         background: false,
         autoCrop: true,
@@ -25,21 +26,25 @@ const cropStart = () => {
         uploadedType = 'image/jpg',
         fillColor = '#000';
 
-    document.querySelector('[data-method="fitImage"]').onclick = function() {
+    document.querySelector('.btn-fit').onclick = function() {
 
-        let resize = {
+        // Get inital crop box data
+        let resizeData = {
             height: cropper.getCropBoxData().height,
             top: cropper.getCropBoxData().top,
             left: cropper.getCropBoxData().left
         }
 
-       cropper.setCanvasData(resize)
+       // Set canvas data equal to crop box data
+       cropper.setCanvasData(resizeData)
 
-       let containerW = cropper.getContainerData().width
-       let boxWidth = containerW - (cropper.getCropBoxData().left * 2) 
-       let imageW = cropper.getImageData().width
+       // calculate width of crop box and get difference for center
+       let containerWidth = cropper.getContainerData().width,
+           boxWidth = containerWidth - (cropper.getCropBoxData().left * 2),
+           imageWwidth = cropper.getImageData().width
 
-       let dif = boxWidth - imageW
+       let dif = boxWidth - imageWwidth
+       
        cropper.move(dif / 2, 0)
 
        document.querySelector('.cropper-modal').style.opacity = 0;
@@ -48,8 +53,11 @@ const cropStart = () => {
 
     }
 
-    document.querySelector('.color-buttons').onclick = e => {
+    // Color background based on selection, defaults is black
+    document.querySelector('.color-buttons').onclick = function(e) {
         let target = e.target;
+        if (target === this) return
+
         fillColor = target.getAttribute('data-fillColor')
 
         document.querySelector('.cropper-view-box').style.backgroundColor = fillColor;
@@ -57,9 +65,8 @@ const cropStart = () => {
     }
 
     // Get new image
-    document.querySelector('.btn-download').onclick = function(event) {
-        let e = event || window.event,
-            target = e.target || e.srcElement,
+    document.querySelector('.btn-download').onclick = e => {
+        let target = e.target,
             result,
             data;
 
@@ -81,8 +88,7 @@ const cropStart = () => {
         result = cropper[data.method](data.option)
 
         if (result) {
-            $('#getCroppedCanvasModal').modal().find('.modal-body').html(result);
-            
+            $('#croppedModal').modal().find('.modal-body').html(result);
             download.href = result.toDataURL(uploadedType);
         }
 
@@ -93,7 +99,7 @@ const cropStart = () => {
         uploadedURL;
 
     if (URL) {
-        uploadImage.onchange = function() {
+        uploadImage.onchange = function(e) {
             let files = this.files
            
             if (cropper && files) {
@@ -101,16 +107,20 @@ const cropStart = () => {
 
                 if (/^image\/\w+/.test(file.type)) {
                     uploadedType = file.type
-                    
-                    if (uploadedURL) {
-                        URL.revokeObjectURL(uploadedURL)
-                    }
+    
+                    if (uploadedURL) URL.revokeObjectURL(uploadedURL)
+
                     image.src = uploadedURL = URL.createObjectURL(file)
+
                     cropper.destroy()
                     cropper = new Cropper(image, options)
+
                     uploadImage.value = null
-                    let steps = document.querySelector('.hidden') || undefined
-                    if (steps) steps.classList.remove('hidden')
+                    
+                    download.download = file.name
+
+                    document.querySelectorAll('.hidden').forEach(div => {if(div) div.classList.remove('hidden')})
+                    document.querySelector('.upload-wrapper').classList.add('move')
                     
                 } else {
                     window.alert('Pleaes choose an image')
