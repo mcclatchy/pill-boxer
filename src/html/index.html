@@ -9,10 +9,14 @@
   <div class="container">
     <div class="upload-wrapper text-center">
       <h3>Step 1.</h3>
+      <i class="fa fa-upload fa-5x" aria-hidden="true"></i>
+      <br>
       <label class="btn btn-lg btn-upload" for="uploadImage" title="Upload image">
         <input type="file" class="sr-only" id="uploadImage" name="file" accept=".jpg, .jpeg, .png, .gif, .bmp, tiff">
         <span>Upload image</span>
       </label>
+      <br>
+      <span class="drag-text">or drag it here</span>
     </div> 
     <div class="row">
       <div class="col-md-9 hidden">
@@ -55,7 +59,7 @@
       <div class="modal-body"></div>
       <div class="modal-footer">
         <button type="button" class="btn btn-dark" data-dismiss="modal">Back</button>
-        <a class="btn btn-primary" id="download" href="javascript:void(0);" download="cropped" disabled><i class="fa fa-download" aria-hidden="true"></i> Download</a>
+        <a class="btn btn-primary" id="download" href="javascript:void(0);" download=""><i class="fa fa-download" aria-hidden="true"></i> Download</a>
       </div>
     </div>
   </div>

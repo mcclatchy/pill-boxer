@@ -26,6 +26,7 @@ const cropStart = () => {
         uploadedType = 'image/jpg',
         fillColor = '#000';
 
+    // Fits image to the aspect ratio
     document.querySelector('.btn-fit').onclick = function() {
 
         // Get inital crop box data
@@ -43,9 +44,9 @@ const cropStart = () => {
            boxWidth = containerWidth - (cropper.getCropBoxData().left * 2),
            imageWwidth = cropper.getImageData().width
 
-       let dif = boxWidth - imageWwidth
+       let dif = (boxWidth - imageWwidth) / 2
        
-       cropper.move(dif / 2, 0)
+       cropper.move(dif, 0)
 
        document.querySelector('.cropper-modal').style.opacity = 0;
        document.querySelector('.cropper-view-box').style.backgroundColor = fillColor;
@@ -99,40 +100,67 @@ const cropStart = () => {
         uploadedURL;
 
     if (URL) {
-        uploadImage.onchange = function(e) {
+        uploadImage.onchange = function() {
             let files = this.files
            
-            if (cropper && files) {
-                let file = files[0]
-
-                if (/^image\/\w+/.test(file.type)) {
-                    uploadedType = file.type
-    
-                    if (uploadedURL) URL.revokeObjectURL(uploadedURL)
-
-                    image.src = uploadedURL = URL.createObjectURL(file)
-
-                    cropper.destroy()
-                    cropper = new Cropper(image, options)
-
-                    uploadImage.value = null
-                    
-                    download.download = file.name
-
-                    document.querySelectorAll('.hidden').forEach(div => {if(div) div.classList.remove('hidden')})
-                    document.querySelector('.upload-wrapper').classList.add('move')
-                    
-                } else {
-                    window.alert('Pleaes choose an image')
-                }
-            }
+            ({ cropper, uploadedType, uploadedURL } = uploadFile(cropper, files, uploadedType, uploadedURL, URL, image, options, uploadImage, download));
         };
+        
     } else {
         uploadImage.disabled = true;
         uploadImage.parentNode.className += ' disabled';
     }
 
+    const wrapper = document.querySelector('.upload-wrapper');
+
+    wrapper.ondrop = function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        let files = e.dataTransfer.files;
+
+        ({ cropper, uploadedType, uploadedURL } = uploadFile(cropper, files, uploadedType, uploadedURL, URL, image, options, uploadImage, download))
+
+    }
+
+    wrapper.ondragover = e => {
+        e.preventDefault();
+        e.stopPropagation();
+        wrapper.classList.add('is-dragover')
+    }
+
+    wrapper.ondragleave = e => {
+        e.preventDefault();
+        e.stopPropagation();
+        wrapper.classList.remove('is-dragover')
+    }
 
 }
 
 export default cropStart
+
+function uploadFile(cropper, files, uploadedType, uploadedURL, URL, image, options, uploadImage, download) {
+    if (cropper && files) {
+        let file = files[0];
+        if (/^image\/\w+/.test(file.type)) {
+            uploadedType = file.type;
+            console.log(file);
+            if (uploadedURL)
+                URL.revokeObjectURL(uploadedURL);
+            image.src = uploadedURL = URL.createObjectURL(file);
+            cropper.destroy();
+            cropper = new Cropper(image, options);
+            uploadImage.value = null;
+            download.download = `${file.name.slice(-0, -4)}_fitted.${file.name.slice(-3)}`;
+            document.querySelectorAll('.hidden').forEach(div => {
+                if (div)
+                    div.classList.remove('hidden');
+            });
+            document.querySelector('.upload-wrapper').classList.add('move');
+            document.querySelector('.drag-text').style.display = "none"
+        }
+        else {
+            window.alert('Pleaes choose an image');
+        }
+    }
+    return { cropper, uploadedType, uploadedURL };
+}
