@@ -134,16 +134,17 @@ const cropStart = () => {
         wrapper.classList.remove('is-dragover')
     }
 
-}
+    document.querySelector('.btn-destory').onclick = () => {
+        window.location.reload()
+    }
 
-export default cropStart
+}
 
 function uploadFile(cropper, files, uploadedType, uploadedURL, URL, image, options, uploadImage, download) {
     if (cropper && files) {
         let file = files[0];
         if (/^image\/\w+/.test(file.type)) {
             uploadedType = file.type;
-            console.log(file);
             if (uploadedURL)
                 URL.revokeObjectURL(uploadedURL);
             image.src = uploadedURL = URL.createObjectURL(file);
@@ -164,3 +165,5 @@ function uploadFile(cropper, files, uploadedType, uploadedURL, URL, image, optio
     }
     return { cropper, uploadedType, uploadedURL };
 }
+
+export default cropStart
