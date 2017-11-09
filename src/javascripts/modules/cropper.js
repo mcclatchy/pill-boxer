@@ -4,8 +4,8 @@ const cropStart = () => {
 
     const URL = window.URL || window.webkitURL
 
-    let image = document.getElementById('image')
-    let download = document.getElementById('download');
+    const image = document.getElementById('image'),
+          download = document.getElementById('download')
 
     let options = {
         aspectRatio: 1.78,
@@ -96,12 +96,12 @@ const cropStart = () => {
     }
 
     // Image Upload
-    let uploadImage = document.getElementById('uploadImage'),
-        uploadedURL;
+    const uploadImage = document.getElementById('uploadImage');
+    let uploadedURL;
 
     if (URL) {
         uploadImage.onchange = function() {
-            let files = this.files
+            let files = this.files;
            
             ({ cropper, uploadedType, uploadedURL } = uploadFile(cropper, files, uploadedType, uploadedURL, URL, image, options, uploadImage, download));
         };
@@ -119,7 +119,6 @@ const cropStart = () => {
         let files = e.dataTransfer.files;
 
         ({ cropper, uploadedType, uploadedURL } = uploadFile(cropper, files, uploadedType, uploadedURL, URL, image, options, uploadImage, download))
-
     }
 
     wrapper.ondragover = e => {
