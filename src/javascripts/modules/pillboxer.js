@@ -1,10 +1,9 @@
 import Cropper from 'cropperjs'
 
-const cropStart = () => {
+const pillBoxer = () => {
 
-    const URL = window.URL || window.webkitURL
-
-    const image = document.getElementById('image'),
+    const URL = window.URL,
+          image = document.getElementById('image'),
           download = document.getElementById('download')
 
     let options = {
@@ -23,7 +22,7 @@ const cropStart = () => {
 
     // Initiate Crop
     let cropper = new Cropper(image, options),
-        uploadedType = 'image/jpg',
+        fileType = 'image/jpg',
         fillColor = '#000';
 
     // Fits image to the aspect ratio
@@ -51,7 +50,6 @@ const cropStart = () => {
        document.querySelector('.cropper-modal').style.opacity = 0;
        document.querySelector('.cropper-view-box').style.backgroundColor = fillColor;
 
-
     }
 
     // Color background based on selection, defaults is black
@@ -63,47 +61,51 @@ const cropStart = () => {
 
         document.querySelector('.cropper-view-box').style.backgroundColor = fillColor;
 
+        let options =  {
+            maxWidth: 3000,
+            maxHeight: 3000,
+            fillColor: fillColor
+        }
+
+        let result = cropper.getCroppedCanvas(options)
+        if (result) download.href = result.toDataURL(fileType);
+
+
     }
 
     // Get new image
     document.querySelector('.btn-download').onclick = e => {
         let target = e.target,
-            result,
-            data;
+            result;
 
         if (!cropper) return
 
-        data = {
-            method: target.getAttribute('data-method'),
-            option: target.getAttribute('data-option') || undefined
-        }
+        let options = target.getAttribute('data-option')
 
         try {
-            data.option = JSON.parse(data.option);
+            options = JSON.parse(options);
         } catch (e) {
             console.log(e.message);
         }
 
-        data.option.fillColor = fillColor;
+        options.fillColor = fillColor;
 
-        result = cropper[data.method](data.option)
+        result = cropper.getCroppedCanvas(options)
 
         if (result) {
             $('#croppedModal').modal().find('.modal-body').html(result);
-            download.href = result.toDataURL(uploadedType);
+            download.href = result.toDataURL(fileType);
         }
-
     }
 
     // Image Upload
     const uploadImage = document.getElementById('uploadImage');
-    let uploadedURL;
 
     if (URL) {
         uploadImage.onchange = function() {
             let files = this.files;
-           
-            ({ cropper, uploadedType, uploadedURL } = uploadFile(cropper, files, uploadedType, uploadedURL, URL, image, options, uploadImage, download));
+            ({ cropper, fileType } = imageUploader(cropper, files, fileType, image, options, download));
+            uploadImage.value = null;
         };
         
     } else {
@@ -118,7 +120,7 @@ const cropStart = () => {
         e.stopPropagation();
         let files = e.dataTransfer.files;
 
-        ({ cropper, uploadedType, uploadedURL } = uploadFile(cropper, files, uploadedType, uploadedURL, URL, image, options, uploadImage, download))
+        ({ cropper, fileType } = imageUploader(cropper, files, fileType, image, options, download));
     }
 
     wrapper.ondragover = e => {
@@ -139,30 +141,27 @@ const cropStart = () => {
 
 }
 
-function uploadFile(cropper, files, uploadedType, uploadedURL, URL, image, options, uploadImage, download) {
+export default pillBoxer
+
+function imageUploader(cropper, files, fileType, image, options, download) {
     if (cropper && files) {
-        let file = files[0];
+        let file = files[0]
         if (/^image\/\w+/.test(file.type)) {
-            uploadedType = file.type;
-            if (uploadedURL)
-                URL.revokeObjectURL(uploadedURL);
-            image.src = uploadedURL = URL.createObjectURL(file);
+            fileType = file.type;
+            image.src = window.URL.createObjectURL(file);
             cropper.destroy();
             cropper = new Cropper(image, options);
-            uploadImage.value = null;
-            download.download = `${file.name.slice(-0, -4)}_fitted.${file.name.slice(-3)}`;
+            download.download = `${fileType.slice(6).length > 3 ? file.name.slice(-0, -5) : file.name.slice(-0, -4)}_fitted.${file.type.slice(6)}`;
             document.querySelectorAll('.hidden').forEach(div => {
                 if (div)
                     div.classList.remove('hidden');
             });
             document.querySelector('.upload-wrapper').classList.add('move');
-            document.querySelector('.drag-text').style.display = "none"
+            document.querySelector('.drag-text').style.display = "none";
         }
-        else {
-            window.alert('Pleaes choose an image');
-        }
+        else window.alert('Pleaes choose an image');
+        
     }
-    return { cropper, uploadedType, uploadedURL };
+    return { cropper, fileType };
 }
 
-export default cropStart

@@ -1,7 +1,8 @@
-import cropper from './modules/cropper'
+import pillBoxer from './modules/pillboxer'
 
-navigator.sayswho = (function () {
-    var ua = navigator.userAgent, tem,
+// sayswho courtesy of kennebec via Stack Overflow
+navigator.sayswho = (() => {
+    let ua = navigator.userAgent, tem,
         M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
     if (/trident/i.test(M[1])) {
         tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
@@ -18,17 +19,17 @@ navigator.sayswho = (function () {
 
 
 if (navigator.sayswho == "Chrome" || navigator.sayswho == "Firefox") {
-    window.onload = cropper;
+    window.onload = pillBoxer;
 }
 else {
     document.querySelector('.upload-wrapper').remove()
     const browserCatch = document.createElement('div')
+    const appContainer = document.querySelector('.container');
     browserCatch.className = "alert alert-danger text-center w-50 center"
     browserCatch.style.margin = "auto"
     browserCatch.innerHTML = `
     <h4 class="alert-heading"><i class="fa fa-frown-o fa-lg" aria-hidden="true"></i></h4>
-    <p>Looks like your using a non-supported browser.</p>
+    <p>Looks like you're using a non-supported browser.</p>
     <p>Please switch to Chrome or Firefox to use this tool.</p>`
-    document.querySelector('.container').insertBefore(browserCatch, document.querySelector('.container').firstChild)
-    console.log(navigator.sayswho);
+    appContainer.insertBefore(browserCatch, appContainer.firstChild)
 }
