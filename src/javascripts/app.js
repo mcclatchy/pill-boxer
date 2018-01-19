@@ -19,7 +19,8 @@ navigator.sayswho = (() => {
 
 
 if (navigator.sayswho == "Chrome" || navigator.sayswho == "Firefox") {
-    window.onload = pillBoxer;
+    let browser = navigator.sayswho;
+    window.onload = pillBoxer(browser);
 }
 else {
     document.querySelector('.upload-wrapper').remove()

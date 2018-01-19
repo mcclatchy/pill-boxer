@@ -1,3 +1,7 @@
+@import "base/animations";
+@import "base/othercropper";
+@import "base/warning";
+
 $green: #31b55f;
 $blue: #0A6EA9;
 body {
@@ -24,70 +28,17 @@ header {
     max-width: 100%;
 }
 
-.modal-body {
-    text-align: center;
-}
-
-.modal-body>img,
-.modal-body>canvas {
-    max-width: 100%;
-}
-
 label {
     margin-bottom: 0;
 }
 
-.btn {
-    margin-bottom: 1rem;
-    border-radius: 2px;
-    border: none;
-    cursor: pointer;
-}
-
-.btn-upload {
-    color: #fff;
-    background-color: $green;
-    &:hover {
-        cursor: pointer;
-        background-color: #258b47;
-    }
-}
-
-.btn-download,
-.btn-fit,
-.btn-primary {
-    background-color: $blue;
-    border-radius: 2px;
-    color: #fff;
-    border: none;
-    &:hover {
-        cursor: pointer;
-        background-color: rgb(8, 79, 121);
-        border: none;
-    }
-}
-
-.btn-dark {
-    margin-right: 1em;
-}
-
-.btn-destory {
-    position: absolute;
-    bottom: 0;
-    left: 15px;
-    background-color: rgba(220, 34, 40, .85);
-    color: #fff;
-    &:hover {
-        cursor: pointer;
-        background-color: rgb(192, 41, 46);
-        border: none;
-    }
-}
-
 .footer {
     position: absolute;
-    bottom: 10px;
+    bottom: 0;
     right: 20px;
+    height: 40px;
+    line-height: 40px;
+    text-align: right;
     font-size: 13px;
     .version {
         font-size: 11px;
@@ -95,16 +46,6 @@ label {
     }
     a {
         color: $blue;
-    }
-}
-
-.modal-content {
-    background-color: #ececec;
-    border-color: #ececec;
-    border-radius: 0;
-    .modal-footer,
-    .modal-header {
-        border: none;
     }
 }
 
@@ -134,33 +75,9 @@ label {
     }
 }
 
-.cropper-modal {
-    opacity: 0.5;
-    transition: opacity .5s ease-in-out;
-}
-
-.cropper-view-box {
-    outline-color: rgba(220, 34, 40, .75);
-    transition: background-color .25s .25s
-}
-
-.cropper-face {
-    background-color: unset;
-}
-
-.modal-title {
-    margin-left: 50%;
-    transform: translateX(-50%)
-}
-
 .col-md-3 p {
     font-size: .8rem;
     margin-bottom: .5rem;
-}
-
-.cropper-canvas>img,
-.cropper-view-box>img {
-    transition: .25s;
 }
 
 .upload-wrapper {
@@ -191,7 +108,6 @@ label {
 .fa-upload {
     color: $green;
     margin: .5em;
-    transition: .25s;
 }
 
 .is-dragover {
@@ -203,6 +119,103 @@ label {
     }
 }
 
-.container .row {
-    margin-bottom: 1em;
+/***************
+* MODAL STYLES *
+****************/
+
+#croppedModal .modal-body {
+    text-align: center;
+}
+
+#croppedModal .modal-content {
+    background-color: #ececec;
+    border-color: #ececec;
+    border-radius: 0;
+    .modal-footer,
+    .modal-header {
+        border: none;
+    }
+}
+
+.modal-body>img,
+.modal-body>canvas {
+    max-width: 100%;
+}
+
+#croppedModal .modal-title {
+    margin-left: 50%;
+    transform: translateX(-50%)
+}
+
+/****************
+* BUTTON STYLES *
+*****************/
+
+.btn {
+    margin-bottom: 1rem;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.how-to {
+    position: relative;
+    border-radius: 2px;
+    color: #fff;
+    background: #0FA0F5;
+    box-shadow: 0 6px #0B76B6;
+    padding: 15px 18px;
+    border: none;
+    transition: none;
+    &:hover {
+    box-shadow: 0 4px #0B76B6;
+    top: 2px;
+    }
+    &:active {
+    box-shadow: 0 0 #0B76B6;
+    top: 6px;
+    }
+    &:focus {
+        outline: unset;
+        box-shadow: 0 0 #0B76B6;
+        top: 6px;
+    }
+}
+
+.btn-upload {
+    color: #fff;
+    background-color: $green;
+    &:hover {
+        cursor: pointer;
+        background-color: #258b47;
+    }
+}
+
+.btn-download,
+.btn-fit,
+.btn-primary {
+    background-color: $blue;
+    border-radius: 2px;
+    color: #fff;
+    border: none;
+    &:hover {
+        cursor: pointer;
+        background-color: rgb(8, 79, 121);
+        border: none;
+    }
+}
+
+.btn-dark {
+    margin-right: 1em;
+}
+
+.btn-destroy {
+    position: absolute;
+    bottom: 0;
+    left: 15px;
+    background-color: rgba(220, 34, 40, .85);
+    color: #fff;
+    &:hover {
+        cursor: pointer;
+        background-color: rgb(192, 41, 46);
+    }
 }

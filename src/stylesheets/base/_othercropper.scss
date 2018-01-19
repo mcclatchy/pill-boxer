@@ -1,0 +1,17 @@
+.cropper-modal {
+    opacity: 0.5;
+    transition: opacity .5s ease-in-out;
+}
+
+.cropper-view-box {
+    outline-color: rgba(220, 34, 40, .75);
+    transition: background-color .25s .25s
+}
+
+.cropper-face {
+    background-color: unset;
+}
+.cropper-canvas>img,
+.cropper-view-box>img {
+    transition: .25s;
+}

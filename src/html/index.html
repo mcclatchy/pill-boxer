@@ -2,17 +2,18 @@
 
 {% block content %}
 <header>
-  <h1>Pill<br>Boxer</h1>
-  <p>Because not everyone fits in.</p> 
+    <h1>Pill<br>Boxer</h1>
+  <p>Crop photos to fit your website in four easy steps.</p> 
+  <button class="how-to btn" href="#">How to get the most out of Pill Boxer</button>
 </header>
 
-  <div class="container">
+  <main role="main" class="container">
     <div class="upload-wrapper text-center">
       <h3>Step 1.</h3>
       <i class="fa fa-upload fa-5x" aria-hidden="true"></i>
       <br>
       <label class="btn btn-lg btn-upload" for="uploadImage" title="Upload image">
-        <input type="file" class="sr-only" id="uploadImage" name="file" accept=".jpg, .jpeg, .png, .gif, .bmp, tiff">
+        <input type="file" class="sr-only" id="uploadImage" name="file" accept=".jpg, .jpeg, .gif, .bmp, .png">
         <span>Upload image</span>
       </label>
       <br>
@@ -38,18 +39,20 @@
       <h3>Step 4.</h3>
       <!-- <a class="btn btn-primary" id="download" href="javascript:void(0);" download="">
         <i class="fa fa-download" aria-hidden="true"></i> Download</a> -->
-      <button type="button" class="btn btn-download" data-option="{ &quot;maxWidth&quot;: 3000, &quot;maxHeight&quot;: 3000 }">Download new image</button>
+      <button type="button" class="btn btn-download">Download new image</button>
 
-      <button type="button" class="btn btn-destory">Start over</button>
+      <button type="button" class="btn btn-destroy">Start over</button>
     </div>
     </div>
 
-    <div class="footer">
-      <span>Not working as expected? Email <a href="mailto:aalbright@miamiherald.com?subject=Pill%20Boxer%20help">Aaron Albright</a></span>
-      <span class="version">v0.4.0</span>
-    </div>
+  </main> <!-- /.container -->
 
-  </div> <!-- /.container -->
+  <footer class="footer">
+        <span>Not working as expected? Email
+         <a href="mailto:aalbright@miamiherald.com?subject=Pill%20Boxer%20help">Aaron Albright</a>
+        </span>
+        <span class="version">v0.5.0</span>
+  </footer>
 
 <div class="modal fade" id="croppedModal" role="dialog" aria-hidden="true" aria-labelledby="getCroppedCanvasTitle" tabindex="-1">
   <div class="modal-dialog modal-lg">
@@ -66,6 +69,42 @@
         <a class="btn btn-primary" id="download" href="javascript:void(0);" download=""><i class="fa fa-download" aria-hidden="true"></i> Download</a>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="modal fade" id="whatsNew" role="dialog" aria-hidden="true" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">How to get the most out of Pill Boxer</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ul>
+          <li>Use JPEG/JPG files and avoid PNG files.</li>
+          <li>Make sure your image is less than:</li>
+          <ul>
+            <li>3,500px on it's longest side</li>
+            <li>2MB in size</li>
+          </ul>
+        </ul>
+        
+        
+        <p>If you're still unable to download the cropped image, trying using Pill Boxer in Firefox.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="warning">
+  <div class="warning--popup alert-warning">
+    <h2><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></h2>
+    <div class="popup--info">
+
+    </div>
+    <button class="btn btn-destroy">Restart</button>
   </div>
 </div>
 

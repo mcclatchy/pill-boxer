@@ -1,0 +1,37 @@
+.warning {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 2;
+    opacity: 0;
+    visibility: hidden;
+    .warning--popup {
+        position: absolute;
+        padding: 3em;
+        border-radius: 2px;
+        top: 30%;
+        left: 32%;
+        color: #222222;
+        background-color: #ffffff;
+        width: 35vw;
+        text-align: center;
+        i.fa {
+            font-size: 2em;
+            color: #ffaf37e0;
+        }
+        &.animate {
+            animation: scale-in-ver-center 0.25s cubic-bezier(0.250, 0.460, 0.450, 0.940) .25s both;
+        }
+        .btn-destroy {
+            margin: 0;
+            position: static !important;
+        }
+    }
+    &.visible {
+        opacity: 1;
+        visibility: visible;
+    }
+}
