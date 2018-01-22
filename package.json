@@ -1,6 +1,6 @@
 {
   "name": "mcclatchy-cropper",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Adds pillarboxes for CMS photots",
   "main": "index.js",
   "author": "Aaron Albright",

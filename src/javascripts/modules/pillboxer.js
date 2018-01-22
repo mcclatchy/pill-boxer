@@ -77,16 +77,20 @@ const pillBoxer = (browser) => {
 
         if (result) {
             let fileURI = result.toDataURL(fileType),
-                base64str = fileURI.substr(22),
-                decoded = atob(base64str),
-                fSize = decoded.length / 1000000
+                subNum;
+            
+            fileType.slice(6).length == 4 ? subNum = 23 : subNum = 22;
+            
+            let base64str = fileURI.substring(subNum),
+              decoded = atob(base64str),
+              fSize = decoded.length / 1000000;
 
             if (fSize.toLocaleString() < 2) {
-                download.href = fileURI;
                 $('#croppedModal').modal().find('.modal-body').html(result);
+                download.href = fileURI;
             } else if (fSize.toLocaleString() > 2 && browser == "Firefox") {
-                download.href = fileURI;
                 $('#croppedModal').modal().find('.modal-body').html(result);
+                download.href = fileURI;
                 window.alert(`
                 CAUTION:
                 The file you're about to download is ${fSize.toLocaleString()} MB.
@@ -170,7 +174,6 @@ function imageUploader(cropper, files, fileType, image, options, download, max) 
         let file = files[0]
         if (/^image\/\w+/.test(file.type)) {
             fileType = file.type;
-            fileType == "image/jpeg" ? fileType = "image/jpg" : fileType;
             image.src = window.URL.createObjectURL(file);
      
             // Checks if image is too large
@@ -197,19 +200,16 @@ function imageUploader(cropper, files, fileType, image, options, download, max) 
             
             cropper.destroy();
             cropper = new Cropper(image, options);
-            console.log(fileType);
-            download.download = `${fileType.slice(6).length > 3 ? file.name.slice(-0, -5) : file.name.slice(-0, -4)}_fitted.${fileType.slice(6)}`;
+            download.download = `${fileType.slice(6).length > 3 ? file.name.slice(-0, -5) : file.name.slice(-0, -4)}_fitted.${file.type.slice(6)}`;
+            console.log(`Type: ${fileType}`);
             document.querySelectorAll('.hidden').forEach(div => {
                 if (div)
                     div.classList.remove('hidden');
             });
             document.querySelector('.upload-wrapper').classList.add('move');
             document.querySelector('.drag-text').style.display = "none";
-        }
-        // else if (file.type == "image/png") {
-        //     window.alert("PNG files are not supported please upload a JPG file.")
-        // }
-        else window.alert('Pleaes choose an image');
+            document.querySelector('.how-to').style.display = "none";
+        } else window.alert('Pleaes choose an image');
         
     }
     return { cropper, fileType };
