@@ -24,6 +24,10 @@ header {
     margin-bottom: 2em;
 }
 
+main.container {
+    margin-bottom: 100px;
+}
+
 #image {
     max-width: 100%;
 }
@@ -33,19 +37,28 @@ label {
 }
 
 .footer {
-    position: absolute;
+    position: fixed;
+    letter-spacing: 1px;
+    left: 0;
     bottom: 0;
-    right: 20px;
+    right: 0;
     height: 40px;
     line-height: 40px;
-    text-align: right;
-    font-size: 13px;
+    padding-left: 20px;
+    text-align: left;
+    font-size: 15px;
+    width: 100%;
+    color: #ececec;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.25);
+    background-color: rgba(68, 68, 68, .7);
     .version {
-        font-size: 11px;
-        margin-left: 10px;
+        position: absolute;
+        right: 20px;
+        font-size: 12px;
     }
     a {
-        color: $blue;
+        color: #ffd000;
+        text-decoration: underline;
     }
 }
 
@@ -129,8 +142,8 @@ label {
 
 #croppedModal .modal-content {
     background-color: #ececec;
-    border-color: #ececec;
-    border-radius: 0;
+    border: 0;
+    border-radius: 2px;
     .modal-footer,
     .modal-header {
         border: none;
@@ -155,6 +168,7 @@ label {
     margin-bottom: 1rem;
     border-radius: 2px;
     cursor: pointer;
+    border: none;
 }
 
 .how-to {

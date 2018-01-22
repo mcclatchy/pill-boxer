@@ -109,10 +109,10 @@ const pillBoxer = (browser) => {
 
                 let info = document.querySelector(".popup--info");
                 info.innerHTML = `
-                    <p>File is too big!</p>
-                    <p>Google Chrome can't download files larger than 2 MB.</p>
+                    <p>This file is too big to download!</p>
+                    <p>Chrome can't download files larger than 2 MB.</p>
                     <p>This image is <b>${fSize.toLocaleString()} MB</b>.</p>
-                    <p>If you're still receiving this error after after shrinking your image, try Firefox. It doesn't have file size restrictions.</p>`;
+                    <p>To download this file without restriction, try Firefox.</p>`;
             }
 
             console.log(`File size: ${(decoded.length / 1000000).toLocaleString()} MB`);
@@ -189,10 +189,9 @@ function imageUploader(cropper, files, fileType, image, options, download, max) 
                     let info = document.querySelector('.popup--info')
                     
                     info.innerHTML = `
-                    <p>Looks like your image is too large!</p>
+                    <p>Looks like your image is too big!</p>
                     <p>This image is <b>${image.naturalWidth.toLocaleString()}px wide</b> and <b>${image.naturalHeight.toLocaleString()}px high</b>.</p>
-                    <p>Please make sure it's less than ${max.toLocaleString()}px on its longest side before trying again.</p>
-                    `;
+                    <p>Please make sure it's less than ${max.toLocaleString()}px on its longest side before trying again.</p>`;
 
                     document.querySelector(".img-container").style.display = "none";
                 }
@@ -214,4 +213,3 @@ function imageUploader(cropper, files, fileType, image, options, download, max) 
     }
     return { cropper, fileType };
 }
-
