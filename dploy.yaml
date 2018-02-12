@@ -1,0 +1,23 @@
+dev:
+    scheme: sftp
+    host: sftp.mcclatchyinteractive.com
+    user: mia00s
+    pass: TitpfM
+    check: true
+    path:
+        local: public/
+        remote: SETME
+    include:
+        "public/**": '/'
+
+production:
+    scheme: sftp
+    host: sftp.mcclatchyinteractive.com
+    user: mia00s
+    pass: TitpfM
+    check: true
+    path:
+        local: public/
+        remote: SETME
+    include:
+        "public/**": '/'

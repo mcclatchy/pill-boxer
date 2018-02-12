@@ -1,13 +1,14 @@
 {
   "name": "mcclatchy-cropper",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "Adds pillarboxes for CMS photots",
   "main": "index.js",
   "author": "Aaron Albright",
   "license": "MIT",
   "dependencies": {
-    "blendid": "^4.3.1",
-    "cropperjs": "^1.1.3"
+    "blendid": "^4.4.2",
+    "cropperjs": "^1.1.3",
+    "dploy": "^1.2.0"
   },
   "scripts": {
     "start": "yarn run blendid",
