@@ -1,6 +1,6 @@
 import pillBoxer from './modules/pillboxer'
 
-// sayswho courtesy of kennebec via Stack Overflow
+// sayswho courtesy of @kennebec via Stack Overflow
 navigator.sayswho = (() => {
     let ua = navigator.userAgent, tem,
         M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];

@@ -218,10 +218,6 @@ label {
     }
 }
 
-.btn-dark {
-    margin-right: 1em;
-}
-
 .btn-destroy {
     position: absolute;
     bottom: 0;
@@ -232,4 +228,15 @@ label {
         cursor: pointer;
         background-color: rgb(192, 41, 46);
     }
+}
+
+.color-buttons {
+    max-width: 230px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.btn-light {
+    border: .5px solid #343a40;
 }
