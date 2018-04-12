@@ -5,6 +5,6 @@ production:
     check: true
     path:
         local: public/
-        remote: 
+        remote: /nm/data/MiamiHerald/MiamiHerald/static/media/projects/2017/pill-boxer
     include:
         "public/**": '/'
