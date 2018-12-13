@@ -7,8 +7,7 @@
   "license": "MIT",
   "dependencies": {
     "blendid": "^4.4.2",
-    "cropperjs": "^1.1.3",
-    "dploy": "^1.2.0"
+    "cropperjs": "^1.1.3"
   },
   "scripts": {
     "start": "yarn run blendid",
