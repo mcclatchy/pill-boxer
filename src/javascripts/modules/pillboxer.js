@@ -20,9 +20,9 @@ const pillBoxer = browser => {
   };
 
   // Initiate Crop
-  let cropper = new Cropper(image, options),
-    fileType = 'image/jpg',
-    fillColor = '#000';
+  let cropper = new Cropper(image, options);
+  let fileType = 'image/jpg';
+  let fillColor = '#000';
 
   // Max dimensions for image
   const max = 3500;
@@ -66,7 +66,7 @@ const pillBoxer = browser => {
     ).style.backgroundColor = fillColor;
   };
 
-  // Get new image
+  // Get cropped image
   document.querySelector('.btn-download').onclick = e => {
     if (!cropper) return;
 

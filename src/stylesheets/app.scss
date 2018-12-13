@@ -166,14 +166,13 @@ label {
 
 .btn {
     margin-bottom: 1rem;
-    border-radius: 2px;
+    border-radius: 5px;
     cursor: pointer;
     border: none;
 }
 
 .how-to {
     position: relative;
-    border-radius: 2px;
     color: #fff;
     background: #0FA0F5;
     box-shadow: 0 6px #0B76B6;
@@ -208,7 +207,6 @@ label {
 .btn-fit,
 .btn-primary {
     background-color: $blue;
-    border-radius: 2px;
     color: #fff;
     border: none;
     &:hover {
@@ -234,7 +232,10 @@ label {
     max-width: 230px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
+    button:first-child {
+        margin-right: 15px;
+    }
 }
 
 .btn-light {
