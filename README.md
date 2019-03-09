@@ -3,10 +3,6 @@
 ## Why
 Pill Boxer was designed and built to easily allow web producers to create photos in a 16:9 aspect ratio from portrait or otherwise non-landscape photos, such as mugshots.
 
-The term for this technqiue is called "pillarboxing" (versus the more-common term letterboxing), hence the name.
-
-For the most part, "it just works."
-
 ## What
 
 Built on the excellent [Cropper.js](https://github.com/fengyuanchen/cropperjs)
