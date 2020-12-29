@@ -1,6 +1,17 @@
+# Node and Parcel
 node_modules
-old.js
-public
+.cache
+
+# Project files
 .vscode
-.DS_Store
-dploy.yaml
+.tmp
+dist
+build
+src/assets
+src/html/global.json
+
+# Auth credentials
+drive.json
+.env
+
+

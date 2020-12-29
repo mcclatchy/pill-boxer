@@ -25,7 +25,7 @@ const pillBoxer = browser => {
   let fillColor = '#000';
 
   // Max dimensions for image
-  const max = 3500;
+  const max = 2000;
 
   // Fits image to the aspect ratio
   document.querySelector('.btn-fit').onclick = function() {
@@ -67,7 +67,7 @@ const pillBoxer = browser => {
   };
 
   // Get cropped image
-  document.querySelector('.btn-download').onclick = e => {
+  document.querySelector('.btn-download').onclick = () => {
     if (!cropper) return;
 
     let options = { maxWidth: max, maxHeight: max };
