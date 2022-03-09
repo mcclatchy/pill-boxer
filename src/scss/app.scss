@@ -1,17 +1,23 @@
+$green: #31b55f;
+$blue: #0A6EA9;
+
+@import "base/normalize";
 @import "base/animations";
 @import "base/othercropper";
 @import "base/warning";
 
-$green: #31b55f;
-$blue: #0A6EA9;
 body {
-    font-family: "McClatchy Sans";
-    background-color: #ececec;
+    font-family: "Source Sans Pro", sans-serif;
+    background-color: #f0f0f0;
     color: #444;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 header {
     text-align: center;
+    margin-top: 2em;
+    margin-bottom: 2em;
     h1 {
         font-size: 3.5rem;
         display: inline-block;
@@ -19,9 +25,11 @@ header {
         border-left: 35px solid #444;
         border-right: 35px solid #444;
         line-height: 1;
+        margin: 0;
     }
-    margin-top: 1em;
-    margin-bottom: 2em;
+    p {
+        margin-top: .75em;
+    }
 }
 
 main.container {
@@ -91,45 +99,6 @@ label {
 .col-md-3 p {
     font-size: .8rem;
     margin-bottom: .5rem;
-}
-
-.upload-wrapper {
-    width: 60%;
-    outline: 2px dashed $green;
-    outline-offset: -10px;
-    margin-top: 10%;
-    transition: margin-top .25s, outline-offset .15s ease-in-out;
-    padding: 5%;
-    background-color: rgba(49, 180, 95, 0.2);
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.move {
-    outline: unset;
-    margin-top: 0;
-    padding: 0;
-    background: none;
-    .fa-upload {
-        display: none;
-    }
-    br {
-        display: none;
-    }
-}
-
-.fa-upload {
-    color: $green;
-    margin: .5em;
-}
-
-.is-dragover {
-    background-color: #fff;
-    outline-color: rgba(49, 180, 95, 0.5);
-    outline-offset: -20px;
-    &.move {
-        background: none;
-    }
 }
 
 /***************
@@ -241,3 +210,5 @@ label {
 .btn-light {
     border: .5px solid #343a40;
 }
+
+@import "uploader";

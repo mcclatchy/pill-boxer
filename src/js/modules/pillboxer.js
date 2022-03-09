@@ -1,3 +1,4 @@
+import 'cropperjs/dist/cropper.min.css'
 import Cropper from 'cropperjs';
 
 const pillBoxer = browser => {
@@ -77,8 +78,8 @@ const pillBoxer = browser => {
     let result = cropper.getCroppedCanvas(options);
 
     if (result) {
-      let fileURI = result.toDataURL(fileType),
-        subNum;
+      let fileURI = result.toDataURL(fileType);
+      let subNum;
 
       fileType.slice(6).length == 4 ? (subNum = 23) : (subNum = 22);
 
@@ -87,16 +88,10 @@ const pillBoxer = browser => {
         fSize = decoded.length / 1000000;
 
       if (fSize.toLocaleString() < 2) {
-        $('#croppedModal')
-          .modal()
-          .find('.modal-body')
-          .html(result);
+        $1('#croppedModal .modal-body').innerHTML = result;
         download.href = fileURI;
       } else if (fSize.toLocaleString() > 2 && browser == 'Firefox') {
-        $('#croppedModal')
-          .modal()
-          .find('.modal-body')
-          .html(result);
+        $1('#croppedModal .modal-body').innerHTML = result;
         download.href = fileURI;
         window.alert(`
                 CAUTION:
@@ -185,10 +180,10 @@ const pillBoxer = browser => {
   });
 
   // Reveals how to modal
-  $('.how-to').click(e => {
-    e.preventDefault();
-    $('#whatsNew').modal();
-  });
+  // $('.how-to').click(e => {
+  //   e.preventDefault();
+  //   $('#whatsNew').modal();
+  // });
 };
 
 export default pillBoxer;
@@ -241,7 +236,7 @@ function imageUploader(
       });
       document.querySelector('.upload-wrapper').classList.add('move');
       document.querySelector('.drag-text').style.display = 'none';
-      document.querySelector('.how-to').style.display = 'none';
+      // document.querySelector('.how-to').style.display = 'none';
     } else window.alert('Pleaes choose an image');
   }
   return { cropper, fileType };
