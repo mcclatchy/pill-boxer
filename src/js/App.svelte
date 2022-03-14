@@ -80,9 +80,7 @@
     let isJpeg = fileExtension.length > 3; // jpeg vs jpg file checker
 
     fittedFileName = `${
-      isJpeg
-        ? fileName.slice(0, -5)
-        : fileName.slice(0, -4)
+      isJpeg ? fileName.slice(0, -5) : fileName.slice(0, -4)
     }_fitted.${fileExtension}`;
   }
 
@@ -132,7 +130,7 @@
         autocomplete="off"
       >
         {#if isFitted && imgBlob}
-          <a href={imgBlob} download="test_{fittedFileName}"
+          <a href={imgBlob} download={fittedFileName}
             ><i class="uil uil-image-download mr-1" />Download</a
           >
         {:else}
@@ -153,7 +151,7 @@
     background-color: #000;
   }
   :global(.cropper-view-box) {
-    outline-color: rgb(165 180 252);
+    outline-color: rgb(165, 180, 252);
     outline-width: 2px;
   }
   .step-span {
