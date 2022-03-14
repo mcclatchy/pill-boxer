@@ -1,17 +1,18 @@
 <script>
   import 'cropperjs/dist/cropper.min.css';
   import Cropper from 'cropperjs';
-  
+
   import Uploader from './components/Uploader.svelte';
 
   // import pillBoxer from './modules/pillboxer';
 
-  let image;
-  let fileType;
+  let image = null;
+  let fileType = null;
   let cropper;
 
   let imgBlob;
-  let fileName;
+  let fileName = null;
+  let fittedFileName = '';
 
   // Bool to determined if "fit image" has been clicked
   let isFitted = false;
@@ -38,9 +39,17 @@
     return {
       update(imgSrc) {
         cropper.replace(imgSrc);
+        if (imgBlob) {
+          console.log('Reovking URL blob from update');
+          URL.revokeObjectURL(imgBlob);
+        }
       },
       destroy() {
         cropper.destroy();
+        if (imgBlob) {
+          console.log('Revoking URL blob');
+          URL.revokeObjectURL(imgBlob);
+        }
       },
     };
   }
@@ -55,17 +64,10 @@
     // Set canvas data equal to crop box data
     cropper.setCanvasData(resizeData);
 
-    // calculate width of crop box and get difference for center
-    // let containerWidth = cropper.getContainerData().width;
-
     let { width } = cropper.getCropBoxData();
-
-    console.log(width);
-
     let imgWidth = cropper.getImageData().width;
 
-    console.log(imgWidth);
-
+    // Calculates centering based on width of the 16:9 frame crop minus the image width (practical not actual)
     let dif = (width - imgWidth) / 2;
 
     cropper.move(dif, 0);
@@ -73,6 +75,17 @@
     isFitted = true;
 
     handleDownload();
+
+    let fileExtension = fileType.slice(6);
+    let isJpeg = fileExtension.length > 3; // jpeg vs jpg file checker
+
+    console.log(fileType);
+
+    fittedFileName = `${
+      isJpeg
+        ? fileName.slice(0, -5)
+        : fileName.slice(0, -4)
+    }_fitted.${fileExtension}`;
   }
 
   function handleDownload() {
@@ -84,15 +97,16 @@
     };
     const result = cropper.getCroppedCanvas(options);
     if (result) {
-      // imgBlob = result.toDataURL(fileType);
-      result.toBlob((blob) => {
+      result.toBlob(blob => {
         imgBlob = URL.createObjectURL(blob);
-      });
+      }, fileType);
     }
   }
 </script>
 
 <Uploader bind:image bind:fileType bind:fileName />
+
+{@debug fileName}
 
 {#if image}
   <div class="container mx-auto bg-white shadow-lg rounded p-6 max-w-4xl">
@@ -105,20 +119,28 @@
       />
     </div>
 
-    <div class="button-wrapper mx-auto flex flex-col justify-center items-center mt-8 space-x-4">
+    <div
+      class="button-wrapper mx-auto flex flex-col justify-center items-center mt-8"
+    >
       <span class="step-span">Step 2</span>
       <button
         on:click={fitImage}
         class="bg-indigo-500 transition hover:bg-indigo-700 text-white rounded-lg py-2 px-5 text-xl shadow"
-        ><i class="uil uil-compress-lines mr-1"/>Fit image</button
+        ><i class="uil uil-compress-lines mr-1" />Fit image</button
       >
 
       <span class="step-span mt-6">Step 3</span>
-      <button class="bg-indigo-600 transition hover:bg-indigo-800 text-white disabled:opacity-50 disabled:bg-gray-400 py-2 px-5 text-xl rounded-lg shadow" disabled={!isFitted && !imgBlob} autocomplete="off">
+      <button
+        class="download-btn bg-indigo-600 transition hover:bg-indigo-800 text-white disabled:opacity-50 disabled:bg-gray-400 text-xl rounded-lg shadow"
+        disabled={!isFitted && !imgBlob}
+        autocomplete="off"
+      >
         {#if isFitted && imgBlob}
-          <a href={imgBlob} download="test_{fileName}"><i class="uil uil-image-download mr-1"></i>Download</a>
+          <a href={imgBlob} download="test_{fittedFileName}"
+            ><i class="uil uil-image-download mr-1" />Download</a
+          >
         {:else}
-        <i class="uil uil-image-download mr-1"></i>Download
+          <span><i class="uil uil-image-download mr-1" />Download</span>
         {/if}
       </button>
     </div>
@@ -139,6 +161,9 @@
     outline-width: 2px;
   }
   .step-span {
-      @apply text-xl font-bold mb-1;
+    @apply text-xl font-bold mb-1;
+  }
+  .download-btn > * {
+    @apply px-5 py-2 inline-block;
   }
 </style>

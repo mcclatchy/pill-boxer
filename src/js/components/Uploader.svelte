@@ -12,9 +12,13 @@
     } else {
       file = e.target.files[0];
     }
-    fileType = file.type;
-    fileName = file.name;
-    image = URL.createObjectURL(file);
+    if (/^image\/\w+/.test(file.type)) {
+      fileType = file.type;
+      fileName = file.name;
+      image = URL.createObjectURL(file);
+    } else {
+      window.alert('Please choose an image.');
+    }
   }
 </script>
 
@@ -48,7 +52,9 @@
 {/if}
 
 {#if image}
-  <div class="mini-uploader container mx-auto flex flec-col items-center justify-center text-center mt-10 mb-5">
+  <div
+    class="mini-uploader container mx-auto flex flec-col items-center justify-center text-center mt-16 mb-5"
+  >
     <label for="uploadImage" title="Upload image">
       <input
         type="file"

@@ -6,7 +6,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <title>PillBoxer: A photo editing tool</title>
+    <title>Pill Boxer: A photo editing tool</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="/src/css/index.css" />
   </head>
   <body
-    class="container mx-auto my-8 md:mt-16 md:mb-32 bg-slate-100 max-w-screen-xl"
+    class="container mx-auto my-8 md:mt-16 md:mb-5 bg-slate-100 max-w-screen-xl"
   >
     <header class="mx-auto container flex flex-col items-center justify-center">
       <h1 class="text-6xl text-slate-900 font-black text-center inline-block border-slate-900 px-2 mb-2">Pill<br />Boxer</h1>
@@ -26,7 +26,19 @@
 
     <main id="root"></main>
 
-    <footer class="flex justify-between items-end fixed bottom-5 w-full container mx-auto mt-40">
+    <aside class="mt-16 mx-auto container max-w-2xl">
+      <h2 class="text-3xl font-bold mb-4">FAQ</h2>
+      <h3>Why is my image not centered in the frame?</h3>
+      <p>The image may be too large. Try reducing the file size by reducing the resolution of the image. This can be done using the built in Preview app on MacOS and the Photos app in Windows 10.</p>
+
+      <h3>Can I make the image have a different background color?</h3>
+      <p>Due to deisgn system changes for all McClatchy sites, a black background is the only way to ensure the image will not look awkward or out of place across all homepages, stories and social media.</p>
+
+      <h3>Why is the image is being distorted and/or still isn't being fitted properly?</h3>
+      <p>Please feel to email <b>aalbright@mccaltchy.com</b> with any other issue you may be having. I'm always happy to help debug. The goal of this tool is to work with as many kinds of images as possible!</p>
+    </aside>
+
+    <footer class="flex justify-between items-end w-full container mx-auto mt-36">
       <p class="text-slate-600 text-xl">Not working as expected? Email Aaron Albright |
         <a class="underline text-rose-700 font-semibold" href="mailto:aalbright@mmcclatchy.com?subject=Pill%20Boxer%20help">aalbright@mcclatchy.com</a></p>
       <span class="font-mono text-slate-400">v2.0.0</span>

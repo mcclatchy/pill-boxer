@@ -15,3 +15,11 @@ body > header > h1 {
 .cropper-view-box>img {
     transition: .25s;
 }
+
+aside > h3 {
+    @apply text-xl font-semibold mb-1 text-indigo-800
+}
+
+aside > p {
+    @apply mb-6 text-slate-900
+}
