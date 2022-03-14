@@ -79,8 +79,6 @@
     let fileExtension = fileType.slice(6);
     let isJpeg = fileExtension.length > 3; // jpeg vs jpg file checker
 
-    console.log(fileType);
-
     fittedFileName = `${
       isJpeg
         ? fileName.slice(0, -5)
@@ -105,8 +103,6 @@
 </script>
 
 <Uploader bind:image bind:fileType bind:fileName />
-
-{@debug fileName}
 
 {#if image}
   <div class="container mx-auto bg-white shadow-lg rounded p-6 max-w-4xl">
