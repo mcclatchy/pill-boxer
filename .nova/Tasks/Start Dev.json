@@ -1,0 +1,14 @@
+{
+  "actions" : {
+    "build" : {
+      "enabled" : false,
+      "script" : "#!\/bin\/sh\nnpm run dev"
+    },
+    "run" : {
+      "enabled" : true,
+      "script" : "#!\/bin\/sh\nnpm run dev"
+    }
+  },
+  "identifier" : "1DB51021-79EA-49EB-BBBA-227D1DEAC5DC",
+  "persistent" : true
+}

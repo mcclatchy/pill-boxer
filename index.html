@@ -13,21 +13,24 @@
       href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700;900&family=Source+Serif+Pro:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
-    <link
-      rel="stylesheet"
-      href="https://unicons.iconscout.com/release/v2.0.1/css/unicons.css"
-    />
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link rel="stylesheet" href="/src/css/index.css" />
   </head>
   <body
-    class="container mx-auto my-8 md:my-24 px-4 bg-gray-100 max-w-screen-xl"
+    class="container mx-auto my-8 md:mt-16 md:mb-32 bg-slate-100 max-w-screen-xl"
   >
-    <header>
-      <h1>Pill<br />Boxer</h1>
-      <p>Crop photos to fit your website in four easy steps.</p>
+    <header class="mx-auto container flex flex-col items-center justify-center">
+      <h1 class="text-6xl text-slate-900 font-black text-center inline-block border-slate-900 px-2 mb-2">Pill<br />Boxer</h1>
+      <p class="text-slate-800">Fit any image into a 16:9 frame with the click of a button</p>
     </header>
 
-    <div id="root"></div>
+    <main id="root"></main>
+
+    <footer class="flex justify-between items-end fixed bottom-5 w-full container mx-auto mt-40">
+      <p class="text-slate-600 text-xl">Not working as expected? Email Aaron Albright |
+        <a class="underline text-rose-700 font-semibold" href="mailto:aalbright@mmcclatchy.com?subject=Pill%20Boxer%20help">aalbright@mcclatchy.com</a></p>
+      <span class="font-mono text-slate-400">v2.0.0</span>
+    </footer>
     <script type="module" src="/src/js/main.js"></script>
   </body>
 </html>

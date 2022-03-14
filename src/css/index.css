@@ -1,0 +1,17 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+body > header > h1 {
+    --bWidth: .6em;
+    border-left-width: var(--bWidth);
+    border-right-width: var(--bWidth);
+}
+
+.cropper-face {
+    background-color: unset;
+}
+.cropper-canvas>img,
+.cropper-view-box>img {
+    transition: .25s;
+}

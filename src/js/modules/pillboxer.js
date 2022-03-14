@@ -100,7 +100,7 @@ const pillBoxer = browser => {
                 Although Pill Boxer doesn't limit file size downloads in Firefox, you may experience a slowdown or delay in recieving your fitted image.
 
                 Ideally, the file you download should be less than 2 MB.
-                
+
                 Proceed with caution.`);
       } else {
         let warning = $('.warning');
