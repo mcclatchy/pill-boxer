@@ -129,6 +129,7 @@
         disabled={!isFitted && !imgBlob}
         autocomplete="off"
       >
+      <!-- An {#if} statement is used because anchor tags cannot have empty an href attribute to meet a11y standards. This ensures the anchor link to download the image only exists when the fitted image can be downloaded. -->
         {#if isFitted && imgBlob}
           <a href={imgBlob} download={fittedFileName}
             ><i class="uil uil-image-download mr-1" />Download</a
