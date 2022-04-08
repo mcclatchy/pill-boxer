@@ -44,4 +44,4 @@ All files inside of `dist` must be uploaded to the `McClatchy/McClatchy/static/p
 
 ## About v1.0
 
-The original version of Pillboxer was built with `gulp` and mostly-vanilla JS. Parts of the code reamins in this branch for now. The remainder of the app can be found in the other branch.
+The original version of Pillboxer was built with `gulp` and mostly-vanilla JS. It can be found under the tag `archive/v1`. To restore this branch use: `git checkout -b v1 archive/v1`.
